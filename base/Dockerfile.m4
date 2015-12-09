@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM ubuntu:wily
 MAINTAINER Vu Le "thenewvu@gmail.com"
 
 include(`setup-user-with-sudo-nopasswd.m4')

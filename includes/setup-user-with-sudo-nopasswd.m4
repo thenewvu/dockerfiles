@@ -1,6 +1,10 @@
 USER root
 
-RUN useradd -m vu && \
-    echo 'vu ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/90-cloudimg-ubuntu
+ARG user=vu
 
-USER vu
+RUN useradd -m $user && \
+    apt-get update && \
+    echo Y | apt-get install -y sudo && \
+    echo "$user ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+USER $user
