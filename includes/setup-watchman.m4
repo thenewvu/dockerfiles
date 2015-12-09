@@ -9,4 +9,4 @@ RUN cd /tmp && \
     ./configure && \
     make && \
     sudo make install && \
-    rm -rf /tmp/watchman
+    sudo rm -rf /tmp/watchman
