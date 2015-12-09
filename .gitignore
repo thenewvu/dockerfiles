@@ -1,2 +1,5 @@
 Dockerfile
 **/*.log
+
+# added by GitSavvy
+/base/.asoundrc
