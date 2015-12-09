@@ -1,0 +1,1 @@
+ENV PATH $PATH:/data/tools/android-sdk/platform-tools:/data/tools/android-sdk/tools
