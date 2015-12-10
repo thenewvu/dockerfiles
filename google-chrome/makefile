@@ -10,15 +10,14 @@ build: dockerfile
 							 -t $(name) .
 
 run:
-	docker run -it --rm \
-			           --net host \
-			           -e DISPLAY=unix$(DISPLAY) \
-	               -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
-			           --device /dev/snd \
-			           -v /dev/shm:/dev/shm \
-	               -v /mnt/docker-data/configs/tmp:/home/$(USER)/Downloads \
-	               -v /mnt/docker-data/configs/google-chrome:/home/$(USER)/.config/google-chrome \
-	               -v /etc/machine-id:/etc/machine-id \
-	               -v /var/lib/dbus:/var/lib/dbus \
-			           --name google-chrome \
-			           $(name)
+	docker run --rm \
+						 --net host \
+						 -e DISPLAY=unix$(DISPLAY) \
+						 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+						 --device /dev/snd \
+						 -v /dev/shm:/dev/shm \
+						 -v /mnt/docker-data/configs/tmp:/home/$(USER)/Downloads \
+						 -v /mnt/docker-data/configs/google-chrome:/home/$(USER)/.config/google-chrome \
+						 -v /var/lib/dbus:/var/lib/dbus \
+						 --name chrome \
+						 $(name)
