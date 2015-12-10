@@ -1,79 +1,187 @@
 #!/usr/bin/env python
 
-# Just a 10-minute script, read it carefully, don't blame me if it doesn't work for you
-# YOU'VE BEEN WARNED!
-
 import os
 import subprocess
+import re
+import sys
+
 from os import path
 
-wd = path.dirname(path.abspath(__file__))
+workingdir = path.dirname(path.abspath(__file__))
 
+namepattern = re.compile(r'name\s*=\s*[\'\"](?P<maintainer>.+)\/(?P<name>.+)[\'\"]')
+basepattern = re.compile(r'FROM\s+((?P<maintainer>.+)\/){0,1}(?P<name>.+)')
+
+
+# Log information message
+def logi(msg):
+  print('* ' + msg)
+
+
+# Log error message
+def loge(msg):
+  print('! ' + msg)
+
+
+# Log a block message
+def logb(msg):
+  msglen       = len(msg)
+  boxlen       = 72
+  leftpadding  = (boxlen - msglen - 3) / 2
+  rightpadding = 72 - msglen - leftpadding - 4
+  print('!' * boxlen)
+  print('!!' + ' ' * leftpadding + msg + ' ' * rightpadding + '!!')
+  print('!' * boxlen)
+
+
+# Log a line
+def logl():
+  print('*' * 72)
+
+
+# Log a new line
+def logn():
+  print('')
+
+
+# Log a tree of images
+def logtree(root, level):
+  print('\t' * level + root.tag())
+  for child in root.children:
+    logtree(child, level + 1)
+
+
+# Contains a docker image information
 class image:
-  def __init__(self, name, base, path, children = []):
-    self.name = name
-    self.base = base
-    self.path = path
-    self.children = children
+  def __init__(self, maintainer, name, base, path):
+    self.maintainer = maintainer
+    self.name       = name
+    self.base       = base
+    self.path       = path
+    self.children   = []    
+
+  def tag(self):
+    return self.maintainer + '/' + self.name
+
   def addchild(self, child):
     self.children.append(child)
-  def findbyname(self, name):
-    if self.name == name:
-      return self
-    for child in self.children:
-      found = child.findbyname(name)
-      if found is not None:
-        return found
 
-tree = None
 
-for cur, dirs, files in os.walk(wd):
-  for d in dirs:
-    if d in ['.git']:
-      dirs.remove(d)
-  for f in files:
-    if f == 'Dockerfile.m4':
-      dockerfile = path.join(cur, f)
-      imagepath = path.dirname(dockerfile)
-      print('#' * 72)
-      print('# path: ' + imagepath)
-      makefile = path.join(imagepath, 'makefile')
-      if path.exists(makefile):
-        with open(makefile, 'r') as fs:
-          for line in fs:
-            if line.startswith('name'):
-              imagename = line[8:].strip()[:-1]
-              print('# name: ' + imagename)
-        with open(dockerfile, 'r') as fs:
-          for line in fs:
-            if line.startswith('FROM'):
-              imagebase = line[5:].strip()
-              print('# from: ' + imagebase)
-              if tree is None:
-                tree = image(imagename, None, imagepath, [])
-              else:
-                foundbase = tree.findbyname(imagebase)
-                if foundbase is None:
-                  tree = image(imagename, None, imagepath, [tree])
-                else:
-                  foundbase.addchild(image(imagename, foundbase, imagepath, []))
+# Scan docker images in @root directory
+# @ignored are directory name that should be skipped from scanning
+def scanimage(root, ignored=['.git']):
+  images = []
+  for cur, dirs, files in os.walk(root):
+    for d in dirs:
+      if d in ignored:
+        dirs.remove(d)
+    for f in files:
+      if f == 'makefile':
+        makefile   = path.join(cur, f)
+        dockerfile = path.join(cur, 'Dockerfile.m4')
+        if path.exists(dockerfile):
+          logn()
+          logl()
+          logi('Found an image at path: .' + cur.replace(root, ''))
+          logn()
 
-def buildtree(root, level):
-  print('--' * level + root.name)
-  exitcode = subprocess.call('cd {imagepath} && make build > {imagename}.log'.format(imagepath=root.path, imagename=root.name.replace('/', '-')), shell=True)
-  if exitcode != 0:
-    return  
+          nameline = open(makefile).readline().strip()
+          m = namepattern.search(nameline)
+          if m is None or m.group('maintainer') is None or m.group('name') is None:
+            loge('But could not read image tag in the first line of makefile')
+            continue
+          imagemaintainer = m.group('maintainer')
+          imagename       = m.group('name')
+          logi('Maintainer: ' + imagemaintainer)
+          logi('Name      : ' + imagename)
+          
+          baseline = open(dockerfile).readline().strip()
+          m = basepattern.search(baseline)
+          if m is None or m.group('name') is None:
+            loge('But could not read base tag in the first line of dockerfile')
+            continue
+          basemaintainer = m.group('maintainer')
+          basemaintainer = basemaintainer if basemaintainer else 'officical'
+          basename       = m.group('name')
+          basetag        = basemaintainer + '/' + basename
+          logi('From      : ' + basetag)
 
-  binname = path.basename(root.path)
-  bin = '#!/bin/sh\nexec make -f $(dirname "$0")/../{binname}/makefile run'.format(binname=binname)
-  binpath = path.join(path.dirname(root.path), 'bin', binname)
+          images.append(image(imagemaintainer, imagename, basetag, cur))
+
+  return images
+
+
+# Scan the tree of dependency between @images
+# @return root of the tree
+def scantree(images):
+  root= None
+
+  # find root
+  for i in images:
+    skip = False
+    for j in images:
+      if i.base == j.tag():
+        skip = True
+        break
+    if skip:
+      continue
+    root = i
+    break
   
-  with open(binpath, 'w') as fs:
-    fs.write(bin)
-  subprocess.call('chmod u+x ' + binpath, shell=True)
+  images.remove(root)
 
+  def scanchild(parent, images, scanned):
+    
+    if scanned >= len(images):
+      return
+  
+    parent.children = [i for i in images if i.base == parent.tag()]
+    scanned         = scanned + len(parent.children)
+
+    for child in parent.children:
+      scanchild(child, images, scanned)
+
+  scanchild(root, images, 0)
+  return root
+
+
+# Build images in order of the dependency tree which starts from @root
+# @level should be 0 (zero)
+def buildtree(root, level):
+  sys.stdout.write('\t' * level + root.tag())
+  sys.stdout.flush()
+
+  makefile = path.join(root.path, 'makefile')
+  logfile  = path.join(root.path, 'build.log')
+
+  exitcode = subprocess.call('cd {buildpath} && make -f {makefile} build > {logfile}' \
+    .format(buildpath=root.path, makefile=makefile, logfile=logfile), shell=True)
+  
+  if exitcode != 0:
+    loge('Build failed! Check log file at: ' + logfile)
+    return
+
+  binfile = path.join(root.path, '..', 'bin', root.name)
+  with open(binfile, 'w') as fs:
+    fs.write('#!/bin/sh\n')
+    fs.write('exec make -f $(dirname "$0")/../{imagename}/makefile run' \
+        .format(imagename=root.name))
+
+  subprocess.call('chmod u+x {binfile}'.format(binfile=binfile), shell=True)
+
+  print(' [DONE]')
+  
   for child in root.children:
     buildtree(child, level + 1)
 
-print(72 * '#')
-buildtree(tree, 0)
+
+if __name__ == '__main__':
+  logb('... SCANNING IMAGES ...')
+  images = scanimage(workingdir)
+  
+  logb('... BUILDING TREE OF IMAGES ... ')
+  root = scantree(images)
+  logtree(root, 0)
+
+  logb('... BUILDING IMAGES ...')
+  buildtree(root, 0)
