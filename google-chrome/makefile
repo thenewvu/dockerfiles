@@ -19,5 +19,5 @@ run:
 						 -v /mnt/docker-data/configs/tmp:/home/$(USER)/Downloads \
 						 -v /mnt/docker-data/configs/google-chrome:/home/$(USER)/.config/google-chrome \
 						 -v /var/lib/dbus:/var/lib/dbus \
-						 --name chrome \
+						 --name google-chrome \
 						 $(name)
