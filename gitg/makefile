@@ -5,7 +5,11 @@ dockerfile: $(includes)/*.m4
 	m4 -I $(includes) ./Dockerfile.m4 > Dockerfile
 
 build: dockerfile
-	docker build --rm -t $(name) .
+	docker build --rm \
+							 --build-arg username=$(USER) \
+							 --build-arg gitusername='$(shell git config --get user.name)' \
+							 --build-arg gituseremail='$(shell git config --get user.email)' \
+							 -t $(name) .
 
 run:
 	docker run -it --rm \

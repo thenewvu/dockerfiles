@@ -1,2 +1,2 @@
-RUN sudo apt-get update && \
-    sudo apt-get install -y gitg
+RUN   apt-get update && \
+      apt-get install -y gitg

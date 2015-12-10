@@ -1,4 +1,4 @@
-RUN sudo sh -c "echo 'deb http://archive.canonical.com/ubuntu/ $(lsb_release -cs) partner' >> /etc/apt/sources.list.d/canonical_partner.list" && \
-    sudo dpkg --add-architecture i386 && \
-    sudo apt-get update && \
-    sudo apt-get install -y skype
+RUN   echo "deb http://archive.canonical.com/ubuntu/ wily partner" > /etc/apt/sources.list.d/canonical_partner.list && \
+      dpkg --add-architecture i386 && \
+      apt-get update && \
+      apt-get install -y skype

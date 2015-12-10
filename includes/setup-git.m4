@@ -1,6 +1,9 @@
-RUN sudo apt-get update && \
-    sudo apt-get install -y git
+ARG   gitusername
+ARG   gituseremail
 
-RUN git config --global user.name "Vu Le" && \
-    git config --global user.email "thenewvu@gmail.com" && \
-    git config --global credential.helper "cache --timeout=36000"
+RUN   apt-get update && \
+      apt-get install -y git
+
+RUN   git config --global user.name   $gitusername  && \
+      git config --global user.email  $gituseremail && \
+      git config --global credential.helper "cache --timeout=36000"
