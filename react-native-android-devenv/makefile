@@ -18,6 +18,7 @@ run:
 	            -v /mnt/docker-data/configs/android-studio:/home/$(USER)/.AndroidStudio1.5 \
 	            -v /mnt/docker-data/configs/android-sdk:/home/$(USER)/.android \
 	            -v /mnt/docker-data/configs/gradle:/home/$(USER)/.gradle \
+	            -v /mnt/docker-data/configs/npm:/home/$(USER)/.npm \
 	            -v /mnt/docker-data/tools/android-sdk:/data/tools/android-sdk \
 	            -v /mnt/docker-data/projects:/data/projects \
 	            --privileged -v /dev/bus/usb:/dev/bus/usb \
