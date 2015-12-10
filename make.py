@@ -63,6 +63,15 @@ def buildtree(root, level):
   exitcode = subprocess.call('cd {imagepath} && make build > {imagename}.log'.format(imagepath=root.path, imagename=root.name.replace('/', '-')), shell=True)
   if exitcode != 0:
     return  
+
+  binname = path.basename(root.path)
+  bin = '#!/bin/sh\nexec make -f $(dirname "$0")/../{binname}/makefile run'.format(binname=binname)
+  binpath = path.join(path.dirname(root.path), 'bin', binname)
+  
+  with open(binpath, 'w') as fs:
+    fs.write(bin)
+  subprocess.call('chmod u+x ' + binpath, shell=True)
+
   for child in root.children:
     buildtree(child, level + 1)
 
