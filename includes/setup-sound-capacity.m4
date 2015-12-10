@@ -1,3 +1,5 @@
-RUN sudo usermod -aG audio vu
+# add non-root user to group audio
+RUN   usermod -aG audio $username
 
-COPY .asoundrc /home/vu/.asoundrc
+# copy source card configuration from host
+COPY  .asoundrc /home/$username/.asoundrc

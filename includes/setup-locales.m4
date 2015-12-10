@@ -1,7 +1,9 @@
-RUN sudo locale-gen --no-purge en_US.UTF-8 && \
-    sudo update-locale LANG=en_US.UTF-8 && \
-    sudo dpkg-reconfigure locales
+ARG   locale
 
-ENV LANGUAGE en_US.UTF-8
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
+RUN   locale-gen --no-purge $locale && \
+      update-locale LANG=$locale && \
+      dpkg-reconfigure locales
+
+ENV   LANGUAGE $locale
+ENV   LANG $locale
+ENV   LC_ALL $locale

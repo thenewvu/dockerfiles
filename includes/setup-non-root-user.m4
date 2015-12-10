@@ -1,0 +1,1 @@
+RUN   useradd -m $username
