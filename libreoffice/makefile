@@ -14,6 +14,7 @@ run:
 	           -e DISPLAY=unix$(DISPLAY) \
 	           -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 	           -v /mnt/docker-data/configs/fonts:/usr/share/fonts:ro \
+	           -v /mnt/docker-data/configs/libreoffice:/home/$(USER)/.config/libreoffice \
 	           -v /mnt/docker-data/projects:/data/projects \
 	           -v /mnt/docker-data/configs/tmp:/data/tmp \
 	           --name libreoffice \
