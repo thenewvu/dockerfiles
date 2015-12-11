@@ -53,12 +53,13 @@ def logtree(root, level):
 
 # Contains a docker image information
 class image:
+
   def __init__(self, maintainer, name, base, path):
     self.maintainer = maintainer
     self.name       = name
     self.base       = base
     self.path       = path
-    self.children   = []    
+    self.children   = []
 
   def tag(self):
     return self.maintainer + '/' + self.name
@@ -94,7 +95,7 @@ def scanimage(root, ignored=['.git']):
           imagename       = m.group('name')
           logi('Maintainer: ' + imagemaintainer)
           logi('Name      : ' + imagename)
-          
+
           baseline = open(dockerfile).readline().strip()
           m = basepattern.search(baseline)
           if m is None or m.group('name') is None:
@@ -127,14 +128,14 @@ def scantree(images):
       continue
     root = i
     break
-  
+
   images.remove(root)
 
   def scanchild(parent, images, scanned):
-    
+
     if scanned >= len(images):
       return
-  
+
     parent.children = [i for i in images if i.base == parent.tag()]
     scanned         = scanned + len(parent.children)
 
@@ -154,9 +155,11 @@ def buildtree(root, level):
   makefile = path.join(root.path, 'makefile')
   logfile  = path.join(root.path, 'build.log')
 
-  exitcode = subprocess.call('cd {buildpath} && make -f {makefile} build > {logfile}' \
-    .format(buildpath=root.path, makefile=makefile, logfile=logfile), shell=True)
-  
+  exitcode = subprocess.call('cd {buildpath} && make -f {makefile} build > {logfile}'
+                              .format(buildpath=root.path,
+                                      makefile=makefile,
+                                      logfile=logfile), shell=True)
+
   if exitcode != 0:
     loge('Build failed! Check log file at: ' + logfile)
     return
@@ -170,7 +173,7 @@ def buildtree(root, level):
   subprocess.call('chmod u+x {binfile}'.format(binfile=binfile), shell=True)
 
   print(' [DONE]')
-  
+
   for child in root.children:
     buildtree(child, level + 1)
 
@@ -178,7 +181,7 @@ def buildtree(root, level):
 if __name__ == '__main__':
   logb('... SCANNING IMAGES ...')
   images = scanimage(workingdir)
-  
+
   logb('... BUILDING TREE OF IMAGES ... ')
   root = scantree(images)
   logtree(root, 0)
