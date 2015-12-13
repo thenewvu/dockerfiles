@@ -5,7 +5,7 @@ ARG   username
 USER  root
 
 include(`setup-oracle-jdk8.m4')
-include(`setup-gtk-radiance-theme.m4')
+include(`setup-gtk-macbuntu-theme.m4')
 include(`setup-smartgit.m4')
 include(`cleanup.m4')
 

@@ -4,7 +4,7 @@ MAINTAINER Vu Le "thenewvu@gmail.com"
 ARG   username
 USER  root
 
-include(`setup-gtk-radiance-theme.m4')
+include(`setup-gtk-macbuntu-theme.m4')
 include(`setup-android-studio.m4')
 include(`cleanup.m4')
 
