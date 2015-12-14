@@ -12,13 +12,14 @@ build: dockerfile
 							 -t $(name) .
 
 run:
-	docker run -it --rm \
+	docker run -it \
+             --rm \
+             --net host \
 						 -v /mnt/docker-data/configs/npm:/home/$(USER)/.npm \
 						 -v /mnt/docker-data/projects:/data/projects \
 						 -v /mnt/docker-data/tools/android-sdk:/data/tools/android-sdk \
 						 -v /mnt/docker-data/configs/android-sdk:/home/$(USER)/.android \
 						 -v /mnt/docker-data/configs/gradle:/home/$(USER)/.gradle \
-						 -v /mnt/docker-data/projects:/data/projects \
 						 --privileged -v /dev/bus/usb:/dev/bus/usb \
 						 --name react-native-devenv \
 						 $(name)
