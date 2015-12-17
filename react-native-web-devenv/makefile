@@ -22,6 +22,5 @@ run:
 						 -v /mnt/docker-data/tools/android-sdk:/data/tools/android-sdk \
 						 -v /mnt/docker-data/projects:/data/projects \
 						 --privileged -v /dev/bus/usb:/dev/bus/usb \
-						 -v /mnt/docker-data/projects:/data/projects \
 						 --name webstorm \
 						 $(name)
