@@ -1,0 +1,16 @@
+FROM thenewvu/base
+MAINTAINER Vu Le "thenewvu@gmail.com"
+
+ARG   username
+USER  root
+
+include(`setup-oracle-jdk8.m4')
+include(`setup-gtk-macbuntu-theme.m4')
+include(`setup-webstorm.m4')
+include(`setup-nodejs.m4')
+include(`setup-git.m4')
+include(`cleanup.m4')
+
+USER  $username
+WORKDIR /data/projects
+ENTRYPOINT /opt/WebStorm-143.1184.19/bin/webstorm.sh
