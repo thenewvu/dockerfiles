@@ -8,7 +8,7 @@ build: dockerfile
 	docker build --rm \
 							 --build-arg username=$(USER) \
 							 --build-arg gitusername='$(shell git config --get user.name)' \
-							 --build-arg gituseremail='$(shell git config --get user.email)' \
+							 --build-arg gitusermail='$(shell git config --get user.email)' \
 							 -t $(name) .
 
 run:
