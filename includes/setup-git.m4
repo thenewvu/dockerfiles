@@ -8,4 +8,4 @@ USER  $username
 RUN   git config --global user.name   "$gitusername" && \
       git config --global user.email  "$gitusermail" && \
       git config --global credential.helper "cache --timeout=36000"
-USER root
+USER  root
