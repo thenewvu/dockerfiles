@@ -1,4 +1,4 @@
-name = 'thenewvu/react-native-android-devenv'
+name = 'thenewvu/android-devenv'
 includes = ./../includes
 
 dockerfile: $(includes)/*.m4
@@ -18,9 +18,8 @@ run:
 	            -v /mnt/docker-data/configs/android-studio:/home/$(USER)/.AndroidStudio1.5 \
 	            -v /mnt/docker-data/configs/android-sdk:/home/$(USER)/.android \
 	            -v /mnt/docker-data/configs/gradle:/home/$(USER)/.gradle \
-	            -v /mnt/docker-data/configs/npm:/home/$(USER)/.npm \
 	            -v /mnt/docker-data/tools/android-sdk:/data/tools/android-sdk \
 	            -v /mnt/docker-data/projects:/data/projects \
 	            --privileged -v /dev/bus/usb:/dev/bus/usb \
-	            --name android-studio \
+	            --name android-devenv \
 	            $(name)

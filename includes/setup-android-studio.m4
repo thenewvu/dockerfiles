@@ -1,3 +1,4 @@
+include(`setup-android-sdk-tools.m4')
 include(`setup-software-properties-common.m4')
 
 RUN   apt-add-repository ppa:paolorotolo/android-studio && \
