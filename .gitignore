@@ -3,3 +3,6 @@ Dockerfile
 
 # added by GitSavvy
 /base/.asoundrc
+
+# added by GitSavvy
+dockerfiles.sublime-workspace
