@@ -18,6 +18,6 @@ run:
              -v /mnt/docker-data/configs/sublime-text:/home/$(USER)/.config/sublime-text-3 \
              -v /mnt/docker-data/configs/fonts:/usr/share/fonts:ro \
              -v /mnt/docker-data/projects:/data/projects \
-             -v /mnt/docker-data/configs/tmp:/data/tmp \
+             -v /mnt/docker-data/configs:/data/configs \
              --name sublime-text \
              $(name)
