@@ -1,2 +1,0 @@
-#!/bin/sh
-exec make -f $(dirname "$0")/../react-native-android-devenv/makefile run
