@@ -7,6 +7,7 @@ USER  root
 include(`setup-oracle-jdk8.m4')
 include(`setup-gtk-macbuntu-theme.m4')
 include(`setup-android-studio.m4')
+include(`setup-subversion.m4')
 include(`cleanup.m4')
 
 USER  $username

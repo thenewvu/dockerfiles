@@ -10,6 +10,7 @@ include(`setup-webstorm.m4')
 include(`setup-nodejs.m4')
 include(`setup-git.m4')
 include(`setup-python3-dev.m4')
+include(`setup-subversion.m4')
 include(`cleanup.m4')
 
 USER  $username
