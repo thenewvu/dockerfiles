@@ -4,7 +4,7 @@ MAINTAINER Vu Le "thenewvu@gmail.com"
 ARG   username
 USER  root
 
-include(`setup-gtk-macbuntu-theme.m4')
+include(`setup-gtk-ambiance-theme.m4')
 include(`setup-google-chrome.m4')
 include(`cleanup.m4')
 
