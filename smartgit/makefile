@@ -20,5 +20,4 @@ run:
 	           -v /mnt/docker-data/configs/smartgit:/home/$(USER)/.smartgit \
 	           -v /mnt/docker-data/projects:/data/projects \
 	           -v /mnt/docker-data/configs:/data/configs \
-	           --name smartgit \
 	           $(name)

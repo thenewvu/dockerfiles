@@ -20,5 +20,4 @@ run:
 			 -v /mnt/docker-data/configs/webstorm:/home/$(USER)/.WebStorm11 \
 			 -v /mnt/docker-data/configs/npm:/home/$(USER)/.npm \
 			 -v /mnt/docker-data/projects:/data/projects \
-			 --name javascript-devenv \
 			 $(name)
