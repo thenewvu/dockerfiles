@@ -18,6 +18,7 @@ run:
 			 -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 			 -v /mnt/docker-data/configs/fonts:/usr/share/fonts:ro \
 			 -v /mnt/docker-data/configs/webstorm:/home/$(USER)/.WebStorm11 \
+			 -v /home/${USER}/.ssh:/home/$(USER)/.ssh \
 			 -v /mnt/docker-data/configs/npm:/home/$(USER)/.npm \
 			 -v /mnt/docker-data/projects:/data/projects \
 			 $(name)

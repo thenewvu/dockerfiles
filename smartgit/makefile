@@ -18,6 +18,7 @@ run:
 	           -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 	           -v /mnt/docker-data/configs/fonts:/usr/share/fonts:ro \
 	           -v /mnt/docker-data/configs/smartgit:/home/$(USER)/.smartgit \
+	           -v /home/${USER}/.ssh:/home/$(USER)/.ssh \
 	           -v /mnt/docker-data/projects:/data/projects \
 	           -v /mnt/docker-data/configs:/data/configs \
 	           $(name)
