@@ -1,11 +1,4 @@
 Dockerfile
 **/*.log
-
-# added by GitSavvy
 /base/.asoundrc
-
-# added by GitSavvy
 dockerfiles.sublime-workspace
-
-# added by GitSavvy
-sublime-text/makefile
