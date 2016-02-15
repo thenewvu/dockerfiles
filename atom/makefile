@@ -13,6 +13,7 @@ build: dockerfile
 
 run:
 	docker run --rm \
+             --net host \
              -e DISPLAY=unix$(DISPLAY) \
              -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
              -v /dev/shm:/dev/shm \
