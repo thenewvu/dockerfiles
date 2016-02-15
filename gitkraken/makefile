@@ -1,4 +1,4 @@
-name = 'thenewvu/kitkraken'
+name = 'thenewvu/gitkraken'
 includes = ./../includes
 
 dockerfile: $(includes)/*.m4
