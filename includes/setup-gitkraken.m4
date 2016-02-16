@@ -23,5 +23,6 @@ RUN   apt-get update && \
                     libxtst6 \
                     libnss3 \
                     gvfs-bin \
+                    libgnome-keyring0 \
                     xdg-utils -y --no-install-recommends && \
     apt-get clean
