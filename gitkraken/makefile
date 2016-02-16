@@ -13,7 +13,7 @@ build: dockerfile
 
 run:
 	docker run -it --rm \
-             -e DISPLAY=unix$(DISPLAY) \
+             -e DISPLAY=$(DISPLAY) \
              -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
              -v /mnt/docker-data/configs/fonts:/usr/share/fonts:ro \
              -v /mnt/docker-data/projects:/data/projects \
