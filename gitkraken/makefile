@@ -12,11 +12,12 @@ build: dockerfile
 			 -t $(name) .
 
 run:
-	docker run -it --rm \
-             -e DISPLAY=$(DISPLAY) \
+	docker run --rm \
+             -e DISPLAY=unix$(DISPLAY) \
              -v /tmp/.X11-unix:/tmp/.X11-unix:ro \
              -v /mnt/docker-data/configs/fonts:/usr/share/fonts:ro \
+			 -v /mnt/docker-data/configs/gitkraken:/home/$(USER)/.gitkraken \
              -v /mnt/docker-data/projects:/data/projects \
              -v /mnt/docker-data/configs:/data/configs \
-             --name kitkraken \
+             --name gitkraken \
              $(name)
