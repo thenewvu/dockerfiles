@@ -10,4 +10,4 @@ include(`setup-gitkraken.m4')
 include(`cleanup.m4')
 
 USER  $username
-ENTRYPOINT /bin/bash
+ENTRYPOINT /usr/share/gitkraken/gitkraken
