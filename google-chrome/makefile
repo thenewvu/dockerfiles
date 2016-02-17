@@ -18,6 +18,8 @@ run:
 						 -v /dev/shm:/dev/shm \
 						 -v /mnt/docker-data/configs/tmp:/home/$(USER)/Downloads \
 						 -v /mnt/docker-data/configs/google-chrome:/home/$(USER)/.config/google-chrome \
+						 -v /mnt/docker-data/configs:/data/config \
+						 -v /mnt/docker-data/projects:/data/projects \
 						 -v /var/lib/dbus:/var/lib/dbus \
 						 --name google-chrome \
 						 $(name)
