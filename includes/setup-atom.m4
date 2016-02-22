@@ -1,4 +1,4 @@
-ARG   atom_version=v1.4.3
+ARG   atom_version=v1.5.3
 
 RUN   apt-get update && \
       apt-get install git \
