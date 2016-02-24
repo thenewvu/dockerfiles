@@ -16,4 +16,4 @@ include(`cleanup.m4')
 
 USER  $username
 WORKDIR /data/projects
-ENTRYPOINT /opt/WebStorm-143.1559.5/bin/webstorm.sh
+ENTRYPOINT /opt/WebStorm-144.4199.8/bin/webstorm.sh
