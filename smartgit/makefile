@@ -15,6 +15,7 @@ run:
 	docker run --rm \
 		--net host \
 		-e DISPLAY=unix$(DISPLAY) \
+    -e _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel" \
 		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 		-v /mnt/docker-data/configs/fonts:/usr/share/fonts:ro \
 		-v /mnt/docker-data/configs/smartgit:/home/$(USER)/.smartgit \
