@@ -5,7 +5,7 @@ ARG   username
 USER  root
 
 include(`setup-oracle-jdk8.m4')
-include(`setup-gtk-ambiance-theme.m4')
+
 include(`setup-webstorm.m4')
 include(`setup-nodejs.m4')
 include(`setup-git.m4')

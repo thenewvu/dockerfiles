@@ -7,4 +7,4 @@ RUN   wget http://download.robomongo.org/0.9.0-rc3/linux/robomongo-0.9.0-rc3-lin
       chown $username:$username -R /opt/robomongo
 
 RUN   apt-get update && \
-      apt-get install -y libgl1-mesa-dev libsm-dev libice-dev
+      apt-get install -y libgl1-mesa-dev libsm-dev libice-dev libglib2.0-0 libxi6 libfontconfig1 libfreetype6 libXi6 libfontconfig1 libfreetype6 libXrender1 xkb-data

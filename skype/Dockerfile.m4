@@ -4,7 +4,7 @@ MAINTAINER Vu Le "thenewvu@gmail.com"
 ARG   username
 USER  root
 
-include(`setup-gtk-ambiance-theme.m4')
+
 include(`setup-skype.m4')
 include(`cleanup.m4')
 
