@@ -4,7 +4,7 @@ MAINTAINER Vu Le "thenewvu@gmail.com"
 ARG   username
 USER  root
 
-
+include(`setup-vertex-gtk-theme.m4')
 include(`setup-nodejs.m4')
 include(`setup-git.m4')
 include(`setup-python3-dev.m4')
