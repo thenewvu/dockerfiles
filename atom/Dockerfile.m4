@@ -13,4 +13,4 @@ include(`setup-atom.m4')
 include(`cleanup.m4')
 
 USER  $username
-ENTRYPOINT /usr/bin/atom -f
+ENTRYPOINT /usr/bin/atom-beta -f

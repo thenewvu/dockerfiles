@@ -1,5 +1,3 @@
-ARG   atom_version=v1.5.3
-
 RUN   apt-get update && \
       apt-get install git \
                       curl \
@@ -17,9 +15,11 @@ RUN   apt-get update && \
                       libxtst6 \
                       libnss3 \
                       gvfs-bin \
-                      xdg-utils -y --no-install-recommends && \
+                      xdg-utils \
+                      libgl1-mesa-glx -y --no-install-recommends && \
       apt-get clean
 
+ARG   atom_version=v1.6.0-beta6
 RUN   curl -L https://github.com/atom/atom/releases/download/$atom_version/atom-amd64.deb > /tmp/atom.deb && \
       dpkg -i /tmp/atom.deb && \
       rm -f /tmp/atom.deb && \
