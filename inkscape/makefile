@@ -14,9 +14,9 @@ run:
 		-e DISPLAY=unix$(DISPLAY) \
 		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 		-v /mnt/docker-data/configs/inkscape:/home/$(USER)/.config/inkscape \
-		-v /mnt/docker-data/projects/dockerfiles/dotfiles/fonts:/usr/share/fonts:ro \
-		-v /mnt/docker-data/projects/dockerfiles/dotfiles/gtkrc-2.0:/home/$(USER)/.gtkrc-2.0:ro \
-		-v /mnt/docker-data/projects/dockerfiles/dotfiles/gtkrc-3.0:/home/$(USER)/.config/gtk-3.0:ro \
+		-v /mnt/docker-data/projects/dockerfiles/dotfiles/fonts:/usr/share/fonts \
+		-v /mnt/docker-data/projects/dockerfiles/dotfiles/gtkrc-2.0:/etc/gtk-2.0/gtkrc \
+		-v /mnt/docker-data/projects/dockerfiles/dotfiles/gtkrc-3.0:/etc/gtk-3.0/settings.ini \
 		-v /mnt/docker-data:/data \
 		--name inkscape \
 		$(name)

@@ -1,3 +1,4 @@
-gtk-theme-name = Vertex-Dark
+[Settings]
 gtk-icon-theme-name = Humanity
+gtk-theme-name = Vertex-Dark
 gtk-font-name = Hermit 8
