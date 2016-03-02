@@ -20,7 +20,6 @@ run:
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/gtkrc-3.0:/etc/gtk-3.0/settings.ini \
 		-v /mnt/docker-data/configs/gitkraken:/home/$(USER)/.gitkraken \
 		-v /home/$(USER)/.ssh:/home/$(USER)/.ssh \
-		-v /mnt/docker-data/projects:/data/projects \
-		-v /mnt/docker-data/configs:/data/configs \
+		-v /mnt/docker-data:/data \
 		--name gitkraken \
 		$(name)

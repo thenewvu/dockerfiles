@@ -7,4 +7,4 @@ RUN     apt-get update && \
         apt-get install -y lutris
 
 RUN     apt-get update && \
-        apt-get install -y libgl1-mesa-glx python-xdg
+        apt-get install -y libgl1-mesa-glx python-xdg dbus-x11
