@@ -9,6 +9,7 @@ include(`setup-sunflower.m4')
 include(`setup-fish.m4')
 include(`setup-p7z-full.m4')
 include(`setup-git.m4')
+include(`setup-gvim.m4')
 include(`cleanup.m4')
 
 USER  $username
