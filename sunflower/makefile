@@ -21,7 +21,7 @@ run:
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/fonts:/usr/share/fonts \
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/gtkrc-2.0:/etc/gtk-2.0/gtkrc \
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/gtkrc-3.0:/etc/gtk-3.0/settings.ini \
-		-v /mnt/docker-data/configs/sunflower:/home/$(USER)/.config/sunflower \
+		-v /mnt/docker-data/configs/sunflower:/home/$(USER)/sunflower \
 		-v /mnt/docker-data:/data \
 		--name sunflower \
 		$(name)
