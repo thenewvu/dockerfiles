@@ -7,4 +7,12 @@ RUN     apt-get update && \
         apt-get install -y lutris
 
 RUN     apt-get update && \
-        apt-get install -y libgl1-mesa-glx python-xdg dbus-x11
+        apt-get install -y libgl1-mesa-glx \
+            python-xdg \
+            dbus-x11 \
+            x11-xserver-utils
+
+RUN     apt-get update && \
+        apt-get install -y libglib2.0-0 \
+            libcurl3 \
+        	libglib2.0-0
