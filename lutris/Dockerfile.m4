@@ -9,4 +9,4 @@ include(`setup-lutris.m4')
 include(`cleanup.m4')
 
 USER  $username
-ENTRYPOINT /usr/bin/lutris
+ENTRYPOINT /usr/bin/lutris -d
