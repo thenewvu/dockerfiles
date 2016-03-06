@@ -14,6 +14,7 @@ build: dockerfile
 run:
 	docker run --rm \
 		--net host \
+		-m 1G --memory-swap -1 \
 		-e DISPLAY=unix$(DISPLAY) \
 		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/fonts:/usr/share/fonts \

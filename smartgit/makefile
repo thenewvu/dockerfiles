@@ -14,8 +14,8 @@ build: dockerfile
 run:
 	docker run --rm \
 		--net host \
+		-m 300M --memory-swap -1 \
 		-e DISPLAY=unix$(DISPLAY) \
-    	-e _JAVA_OPTIONS="-Dawt.useSystemAAFontSettings=on -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel" \
 		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/fonts:/usr/share/fonts \
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/gtkrc-2.0:/etc/gtk-2.0/gtkrc \
