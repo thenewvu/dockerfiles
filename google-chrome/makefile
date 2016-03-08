@@ -12,7 +12,7 @@ build: dockerfile
 run:
 	docker run --rm \
 		--net host \
-		-m 1G --memory-swap -1 \
+		-m 2G --memory-swap -1 \
 		-e DISPLAY=unix$(DISPLAY) \
 		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 		--device /dev/snd \
