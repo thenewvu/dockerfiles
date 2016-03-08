@@ -19,7 +19,7 @@ RUN   apt-get update && \
                       libgl1-mesa-glx -y --no-install-recommends && \
       apt-get clean
 
-ARG   atom_version=v1.6.0-beta6
+ARG   atom_version=v1.5.4
 RUN   curl -L https://github.com/atom/atom/releases/download/$atom_version/atom-amd64.deb > /tmp/atom.deb && \
       dpkg -i /tmp/atom.deb && \
       rm -f /tmp/atom.deb && \
