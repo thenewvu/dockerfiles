@@ -10,6 +10,7 @@ include(`setup-git.m4')
 include(`setup-python3-dev.m4')
 include(`setup-python2-dev.m4')
 include(`setup-atom.m4')
+include(`setup-fish.m4')
 include(`cleanup.m4')
 
 USER  $username
