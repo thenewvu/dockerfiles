@@ -15,6 +15,7 @@ run:
 	docker run --rm \
 		-e DISPLAY=unix$(DISPLAY) \
 		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+		-v /dev/shm:/dev/shm \
 		-v /mnt/docker-data/configs/atom:/home/$(USER)/.atom \
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/fonts:/usr/share/fonts \
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/gtkrc-2.0:/etc/gtk-2.0/gtkrc \
