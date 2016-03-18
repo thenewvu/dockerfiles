@@ -13,8 +13,11 @@ build: dockerfile
 
 run:
 	docker run --rm \
+		--net host \
 		-e DISPLAY=unix$(DISPLAY) \
 		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
+		--device /dev/snd \
+		-v /dev/shm:/dev/shm \
 		-v /dev/shm:/dev/shm \
 		-v /mnt/docker-data/configs/atom:/home/$(USER)/.atom \
 		-v /mnt/docker-data/projects/dockerfiles/dotfiles/fonts:/usr/share/fonts \
