@@ -12,10 +12,9 @@ build: dockerfile
 run:
 	docker run --rm \
 		--net host \
-		-m 2G --memory-swap -1 \
 		-e DISPLAY=unix$(DISPLAY) \
-		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 		--device /dev/snd \
+		-v /tmp/.X11-unix:/tmp/.X11-unix:ro \
 		-v /dev/shm:/dev/shm \
 		-v /var/lib/dbus:/var/lib/dbus \
 		-v /mnt/docker-data/configs/tmp:/home/$(USER)/Downloads \

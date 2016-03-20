@@ -2,6 +2,10 @@ name = 'thenewvu/atom'
 includes = ./../includes
 
 dockerfile: $(includes)/*.m4
+	if [ -f $(HOME)/.asoundrc ]; then \
+		cp $(HOME)/.asoundrc ./.asoundrc; \
+	else \
+		touch ./.asoundrc; fi
 	m4 -I $(includes) ./Dockerfile.m4 > Dockerfile
 
 build: dockerfile
