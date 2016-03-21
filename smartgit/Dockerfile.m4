@@ -10,4 +10,4 @@ include(`setup-smartgit.m4')
 include(`cleanup.m4')
 
 USER  $username
-ENTRYPOINT /usr/bin/smartgit
+ENTRYPOINT /opt/smartgit/bin/smartgit.sh
